@@ -1,24 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 const Home = () => {
+	const [tarea, setTarea] = useState("");
+	const [listaTareas, setListaTareas] = useState([]);
+
+	const handleKeyPress = event => {
+		if (event.key == "Enter") {
+			setListaTareas([...listaTareas, tarea]);
+			setTarea("");
+		}
+	};
+
+	const borrar = indice => {
+		let result = [];
+		for (let i = 0; i < listaTareas.length; i++) {
+			if (listaTareas[i] !== indice) {
+				result.push(listaTareas[i]);
+			}
+		}
+		setListaTareas(result);
+	};
+
 	return (
 		<div className="text-center mt-5">
-			<h1>Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+			<h1>todos</h1>
+			<input
+				type="text"
+				className="form-control"
+				placeholder="Agregar tarea"
+				onChange={e => setTarea(e.target.value)}
+				onKeyPress={f => handleKeyPress(f)}
+				value={tarea}
+			/>
+			<ul>
+				{listaTareas.map((item, index) => {
+					return (
+						<li key={index}>
+							{item}
+							<button
+								className="btn btn-light text-dark"
+								type="submit"
+								onClick={() => borrar(index)}>
+								x
+							</button>
+						</li>
+					);
+				})}
+			</ul>
+			<div>{listaTareas.length} cosas por hacer</div>
 		</div>
 	);
 };
