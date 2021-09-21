@@ -13,11 +13,7 @@ const Home = () => {
 
 	const borrar = indice => {
 		let result = [];
-		for (let i = 0; i < listaTareas.length; i++) {
-			if (listaTareas[i] !== indice) {
-				result.push(listaTareas[i]);
-			}
-		}
+		result = listaTareas.filter((tarea, index) => index !== indice);
 		setListaTareas(result);
 	};
 
