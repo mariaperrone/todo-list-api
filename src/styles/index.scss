@@ -1,3 +1,15 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
-ul{list-style:none;}
+input{width: 100%;
+    font-size: 150%;
+    border:none;}
+
+ul{list-style:none;
+    font-size: 150%;}
+
+.cuerpo{width:50%;
+border-color: gray;}
+
+h1{font-weight: 5;
+font-size: 500%;}
+
