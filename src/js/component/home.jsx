@@ -29,6 +29,29 @@ const Home = () => {
 	useEffect(() => {
 		getTodo();
 	}, []);
+   
+    useEffect(() => {
+		putTodo();
+	}, [listaTareas]);
+
+	const putTodo=()=>{fetch(url, {
+		method: "PUT",
+		body: JSON.stringify(listaTareas),
+		headers: {
+		  "Content-Type": "application/json"
+		}
+	  })
+	  .then(resp => {
+        return resp.json(); // (regresa una promesa) will try to parse the result as json as return a promise that you can .then for results
+    })
+    .then(data => {
+        //Aquí es donde debe comenzar tu código después de que finalice la búsqueda
+        console.log(data); //esto imprimirá en la consola el objeto exacto recibido del servidor
+    })
+    .catch(error => {
+        //manejo de errores
+        alert(error);
+    });}
 
 	const handleKeyPress = event => {
 		if (event.key == "Enter") {
