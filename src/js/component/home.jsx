@@ -4,6 +4,26 @@ const Home = () => {
 	const [tarea, setTarea] = useState("");
 	const [listaTareas, setListaTareas] = useState([]);
 
+	const url = "https://assets.breatheco.de/apis/fake/todos/user/mariaperrone";
+
+	fetch(url, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json"
+		}
+	})
+		.then(resp => {
+			return resp.json(); // (regresa una promesa) will try to parse the result as json as return a promise that you can .then for results
+		})
+		.then(data => {
+			//Aquí es donde debe comenzar tu código después de que finalice la búsqueda
+			console.log(data); //esto imprimirá en la consola el objeto exacto recibido del servidor
+		})
+		.catch(error => {
+			//manejo de errores
+			console.log(error);
+		});
+
 	const handleKeyPress = event => {
 		if (event.key == "Enter") {
 			setListaTareas([...listaTareas, tarea]);
