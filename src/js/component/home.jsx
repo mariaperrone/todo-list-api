@@ -6,6 +6,14 @@ const Home = () => {
 
 	const url = "https://assets.breatheco.de/apis/fake/todos/user/mariaperrone";
 
+	useEffect(() => {
+		getTodo();
+	}, []);
+   
+    useEffect(() => {
+		putTodo();
+	}, [listaTareas]);
+
 	const getTodo = () => {
 		fetch(url, {
 			method: "GET",
@@ -25,14 +33,6 @@ const Home = () => {
 				alert(error);
 			});
 	};
-
-	useEffect(() => {
-		getTodo();
-	}, []);
-   
-    useEffect(() => {
-		putTodo();
-	}, [listaTareas]);
 
 	const putTodo=()=>{fetch(url, {
 		method: "PUT",
