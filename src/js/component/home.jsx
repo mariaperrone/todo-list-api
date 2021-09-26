@@ -9,8 +9,8 @@ const Home = () => {
 	useEffect(() => {
 		getTodo();
 	}, []);
-   
-    useEffect(() => {
+
+	useEffect(() => {
 		putTodo();
 	}, [listaTareas]);
 
@@ -34,24 +34,26 @@ const Home = () => {
 			});
 	};
 
-	const putTodo=()=>{fetch(url, {
-		method: "PUT",
-		body: JSON.stringify(listaTareas),
-		headers: {
-		  "Content-Type": "application/json"
-		}
-	  })
-	  .then(resp => {
-        return resp.json(); // (regresa una promesa) will try to parse the result as json as return a promise that you can .then for results
-    })
-    .then(data => {
-        //Aquí es donde debe comenzar tu código después de que finalice la búsqueda
-        console.log(data); //esto imprimirá en la consola el objeto exacto recibido del servidor
-    })
-    .catch(error => {
-        //manejo de errores
-        alert(error);
-    });}
+	const putTodo = () => {
+		fetch(url, {
+			method: "PUT",
+			body: JSON.stringify(listaTareas),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+			.then(resp => {
+				return resp.json(); // (regresa una promesa) will try to parse the result as json as return a promise that you can .then for results
+			})
+			.then(data => {
+				//Aquí es donde debe comenzar tu código después de que finalice la búsqueda
+				console.log(data); //esto imprimirá en la consola el objeto exacto recibido del servidor
+			})
+			.catch(error => {
+				//manejo de errores
+				alert(error);
+			});
+	};
 
 	const handleKeyPress = event => {
 		if (event.key == "Enter") {
@@ -68,6 +70,12 @@ const Home = () => {
 		let result = [];
 		result = listaTareas.filter((tarea, index) => index !== indice);
 		setListaTareas(result);
+	};
+
+	const borrarAll = () => {
+		console.log("hola desde borrarall");
+		let borrado = [];
+		setListaTareas(borrado);
 	};
 
 	return (
@@ -98,6 +106,12 @@ const Home = () => {
 			<div className="text-secondary">
 				{listaTareas.length} cosas por hacer
 			</div>
+			<button
+				type="button"
+				className="btn btn-light"
+				onClick={() => borrarAll}>
+				Eliminar todas las tareas
+			</button>
 		</div>
 	);
 };
