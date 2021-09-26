@@ -73,7 +73,6 @@ const Home = () => {
 	};
 
 	const borrarAll = () => {
-		console.log("hola desde borrarall");
 		let borrado = [];
 		setListaTareas(borrado);
 	};
@@ -107,9 +106,9 @@ const Home = () => {
 				{listaTareas.length} cosas por hacer
 			</div>
 			<button
-				type="button"
-				className="btn btn-light"
-				onClick={() => borrarAll}>
+				className="btn btn-danger"
+				type="submit"
+				onClick={() => borrarAll()}>
 				Eliminar todas las tareas
 			</button>
 		</div>
